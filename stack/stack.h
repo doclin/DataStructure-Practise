@@ -11,9 +11,9 @@ private:
 	Type element;
 	Node<Type>* pointer_to_next;
 	Node<Type>* pointer_to_prior;
-	Stack(Type e=0, Node<Type>* pl=NULL, Node<Type>* pr=NULL): 
-	    element(e), pointer_to_prior(pl), pointer_to_next(pr) {}
-}
+	Node(Type e=0, Node<Type>* pl=NULL, Node<Type>* pr=NULL) 
+	    : element(e), pointer_to_prior(pl), pointer_to_next(pr) {}
+};
 
 template <typename Type>
 class Stack
@@ -30,7 +30,7 @@ public:
 	Type pop();
 	bool clear();
 	bool is_empty() const;
-}
+};
 
 template <typename Type>
 Stack<Type>::Stack()
@@ -76,7 +76,40 @@ Stack<Type>& Stack<Type>::operator=(const Stack& s)
 template <typename Type>
 bool Stack<Type>::push(const Type& x)
 {
-	
+	top -> pointer_to_next = new Node<Type>(x, top, NULL);
+	top = top -> pointer_to_next;
+	return true;
+}
+
+template <typename Type>
+Type Stack<Type>::pop()
+{
+	Type value = top -> element;
+	if(stack_p != top)
+	{
+	    top = top -> pointer_to_prior;
+	    delete (top -> pointer_to_next);		
+	}
+	return value;
+}
+
+template <typename Type>
+bool Stack<Type>::clear()
+{
+	while(top != stack_p)
+	{
+		top = top -> pointer_to_prior;
+		delete (top -> pointer_to_next);
+	}
+
+}
+
+template <typename Type>
+bool Stack<Type>::is_empty() const
+{
+	if(top == stack_p)
+		return true;
+	return false;
 }
 
 

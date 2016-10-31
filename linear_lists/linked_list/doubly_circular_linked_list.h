@@ -2,7 +2,7 @@
 #define _DOUBLY_CIRCULAR_LINKED_LIST_H_INCLUDED_
 
 #include <iostream>
-#include "linear_list.h"
+#include "../linear_list.h"
 
 template <typename Type> class DBCLinkedList;                              // Declare at beginning, not with :public.
 

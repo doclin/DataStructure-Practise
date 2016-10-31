@@ -2,7 +2,7 @@
 #define _LINKED_LIST_H_INCLUDED_
 
 #include <iostream>
-#include "linear_list.h"
+#include "../linear_list.h"
 
 template <typename Type> class LinkedList;                         // Declare at beginning, not with :public.
 

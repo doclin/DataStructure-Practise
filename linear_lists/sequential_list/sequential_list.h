@@ -1,7 +1,7 @@
 #ifndef _SEQUENTIAL_LIST_H_INCLUDED_
 #define _SEQUENTIAL_LIST_H_INCLUDED_
 
-#include "linear_list.h"
+#include "../linear_list.h"
 #include <iostream>
 using namespace std;
 

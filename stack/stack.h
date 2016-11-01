@@ -27,6 +27,7 @@ public:
 	Stack(const Stack&);
 	Stack<Type>& operator=(const Stack&);
 	bool push(const Type&);
+	Type get_top_element();
 	Type pop();
 	bool clear();
 	bool is_empty() const;
@@ -91,6 +92,12 @@ Type Stack<Type>::pop()
 	    delete (top -> pointer_to_next);		
 	}
 	return value;
+}
+
+template <typename Type>
+Type Stack<Type>::get_top_element()
+{
+	return (top -> element);
 }
 
 template <typename Type>

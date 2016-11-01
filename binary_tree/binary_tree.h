@@ -34,8 +34,8 @@ public:
 	BinaryTree() { root = NULL; }
 	BinaryTree(const BinaryTree&);
 	BinaryTree<Type>& operator=(const BinaryTree&);
-	void clear(BinTreeNode<Type>* p);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
+	void clear(BinTreeNode<Type>* p);	
 	virtual ~BinaryTree();
 	virtual bool is_empty() const;
 	virtual int count(BinTreeNode<Type>* p) const;
@@ -56,6 +56,8 @@ BinaryTree<Type>& BinaryTree<Type>::operator=(const BinaryTree& bt)
 {
 	clear(root);
 	root = copy(bt.root);
+
+	return this*;
 }
 
 template <typename Type>

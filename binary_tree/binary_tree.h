@@ -3,25 +3,16 @@
 
 #include <iostream>
 
-template <typename Type> class BinaryTree;
 
 template <typename Type>
 class BinTreeNode
 {
-	friend BinaryTree<Type>;
-private:
+public:
 	Type element;
 	BinTreeNode<Type>* left_child;
-	BinTreeNode<Type>* right_child;
-public:
+	BinTreeNode<Type>* right_child;	
 	BinTreeNode(Type e=0, BinTreeNode<Type>* pl=NULL, BinTreeNode<Type>* pr=NULL)
 	    : element(e), left_child(pl), right_child(pr) {}
-	Type get_element() const { return element; }
-	BinTreeNode<Type>* get_left() const { return left_child; }
-	BinTreeNode<Type>* get_right() const { return right_child; }
-	void update_element(Type e) { element = e; }
-	void update_left(BinTreeNode<Type>* p) { left_child = p; }
-	void update_right(BinTreeNode<Type>* p) { right_child = p; }
 };
 
 
@@ -31,7 +22,8 @@ class BinaryTree
 private:
 	BinTreeNode<Type>* root;
 public:
-	BinaryTree() { root = NULL; }
+	BinaryTree(): root(NULL) {}
+	BinaryTree(const Type& x);
 	BinaryTree(const BinaryTree&);
 	BinaryTree<Type>& operator=(const BinaryTree&);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
@@ -45,6 +37,13 @@ public:
 	virtual void post_order(BinTreeNode<Type>* p) const;
 };
 
+
+template <typename Type>
+BinaryTree<Type>::BinaryTree(const Type& x)
+{
+	root = new BinTreeNode<Type>(x);
+}
+
 template <typename Type>
 BinaryTree<Type>::BinaryTree(const BinaryTree& bt)
 {
@@ -57,7 +56,7 @@ BinaryTree<Type>& BinaryTree<Type>::operator=(const BinaryTree& bt)
 	clear(root);
 	root = copy(bt.root);
 
-	return this*;
+	return *this;
 }
 
 template <typename Type>
@@ -86,7 +85,7 @@ BinTreeNode<Type>* BinaryTree<Type>::copy(BinTreeNode<Type>* p)
 {
 	if(p == NULL)
 		return NULL;
-	BinTreeNode<Type>* new_p = new BinTreeNode<Type>(p);
+	BinTreeNode<Type>* new_p = new BinTreeNode<Type>(*p);
 	new_p -> left_child = copy(p -> left_child);
 	new_p -> right_child = copy(p -> right_child);
 	return new_p;
@@ -103,7 +102,7 @@ int BinaryTree<Type>::count(BinTreeNode<Type>* p) const
 {
 	if(p == NULL)
 		return 0;
-	return count(p->left_child + p->right_child + 1);
+	return 1 + count(p -> left_child) + count(p -> right_child);
 }
 
 template <typename Type>

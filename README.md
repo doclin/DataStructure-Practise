@@ -9,7 +9,9 @@
 ## 目录结构说明
         ├── binary_tree
         │   ├── binary_tree.cpp
-        │   └── binary_tree.h
+        │   ├── binary_tree.h
+        │   ├── binary_tree_iterator.cpp
+        │   └── binary_tree_iterator.h
         ├── linear_lists
         │   ├── linear_list.h
         │   ├── linked_list
@@ -30,11 +32,12 @@
         │   ├── 1_4.cpp
         │   └── 1_5.cpp
         ├── queue
+        │   ├── queue.cpp
         │   └── queue.h
         ├── README.md
         └── stack
             ├── 3_1.cpp
-            ├── a.out
             ├── stack.cpp
             └── stack.h
+
 

@@ -4,7 +4,7 @@
 template <typename Type> class Stack;
 
 template <typename Type>
-class StackNode
+class StackNode                                                               // 链式节点
 {
 	friend class Stack<Type>;
 private:
@@ -27,7 +27,7 @@ public:
 	Stack(const Stack&);
 	Stack<Type>& operator=(const Stack&);
 	bool push(const Type&);
-	Type get_top_element();
+	Type get_top_element();                                                   // 获取顶元素
 	Type pop();
 	bool clear();
 	bool is_empty() const;

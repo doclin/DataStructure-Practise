@@ -2,6 +2,7 @@
 #define _BINARY_TREE_ITERATOR_INCLUDED_
 #include "binary_tree.h"
 #include "../stack/stack.h"
+#include "../queue/queue.h"
 
 template <typename Type>
 class BaseIterator
@@ -48,6 +49,18 @@ class PostOrderIterator : public BaseIterator<Type>
 	BinTreeNode<Type>* pre;
 public:
 	PostOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt), pre(NULL) {}
+	virtual BinTreeNode<Type>* first();
+	virtual BinTreeNode<Type>* next();
+	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p));
+};
+
+
+template <typename Type>
+class LevelOrderIterator : public BaseIterator<Type>
+{
+	Queue<BinTreeNode<Type>*> queue;
+public:
+	LevelOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt) {}
 	virtual BinTreeNode<Type>* first();
 	virtual BinTreeNode<Type>* next();
 	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p));
@@ -228,6 +241,51 @@ void PostOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 			curr_p = curr_p -> right_child;
 	}
 
+}	
+
+template <typename Type>
+BinTreeNode<Type>* LevelOrderIterator<Type>::first()
+{
+	BaseIterator<Type>::current = BaseIterator<Type>::tree.get_root();
+	if(BaseIterator<Type>::current != NULL)
+	{
+		if(BaseIterator<Type>::current -> left_child)
+			queue.enqueue(BaseIterator<Type>::current -> left_child);
+		if(BaseIterator<Type>::current -> right_child)
+			queue.enqueue(BaseIterator<Type>::current -> right_child);
+	}
+	return BaseIterator<Type>::current;
+}
+
+template <typename Type>
+BinTreeNode<Type>* LevelOrderIterator<Type>::next()
+{
+	if(queue.is_empty())
+		return first();
+	BaseIterator<Type>::current = queue.dequeue();
+	if(BaseIterator<Type>::current -> left_child)
+		queue.enqueue(BaseIterator<Type>::current -> left_child);
+	if(BaseIterator<Type>::current -> right_child)
+		queue.enqueue(BaseIterator<Type>::current -> right_child);
+	return BaseIterator<Type>::current;
+}
+
+template <typename Type>
+void LevelOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
+{
+	Queue<BinTreeNode<Type>*> q;
+	BinTreeNode<Type>* curr_p = BaseIterator<Type>::tree.get_root();
+	if(curr_p != NULL)
+		q.enqueue(curr_p);
+	while(!q.is_empty())
+	{
+		curr_p = q.dequeue();
+		func(curr_p);
+		if(curr_p -> left_child)
+			q.enqueue(curr_p->left_child);
+		if(curr_p -> right_child)
+			q.enqueue(curr_p->right_child);
+	}
 }
 
 

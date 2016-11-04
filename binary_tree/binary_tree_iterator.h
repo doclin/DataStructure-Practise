@@ -22,7 +22,7 @@ class PreOrderIterator : public BaseIterator<Type>
 {
 	Stack<BinTreeNode<Type>*> stack;
 public:
-	PreOrderIterator(BinaryTree<Type>& bt): BaseIterator(bt) {}
+	PreOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt) {}
 	virtual BinTreeNode<Type>* first();
 	virtual BinTreeNode<Type>* next();
 	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p));
@@ -34,7 +34,7 @@ class InOrderIterator : public BaseIterator<Type>
 {
 	Stack<BinTreeNode<Type>*> stack;
 public:
-	InOrderIterator(BinaryTree<Type>& bt): BaseIterator(bt) {}
+	InOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt) {}
 	virtual BinTreeNode<Type>* first();
 	virtual BinTreeNode<Type>* next();
 	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p));
@@ -45,8 +45,9 @@ template <typename Type>
 class PostOrderIterator : public BaseIterator<Type>
 {
 	Stack<BinTreeNode<Type>*> stack;
+	BinTreeNode<Type>* pre;
 public:
-	PostOrderIterator(BinaryTree<Type>& bt): BaseIterator(bt) {}
+	PostOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt), pre(NULL) {}
 	virtual BinTreeNode<Type>* first();
 	virtual BinTreeNode<Type>* next();
 	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p));
@@ -54,10 +55,37 @@ public:
 
 
 template <typename Type>
+BinTreeNode<Type>* PreOrderIterator<Type>::first()
+{
+	BaseIterator<Type>::current = BaseIterator<Type>::tree.get_root();
+	if(BaseIterator<Type>::current != NULL)	
+	{
+		stack.push(BaseIterator<Type>::current);
+		BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+	}
+	return BaseIterator<Type>::tree.get_root();
+}
+
+template <typename Type>
+BinTreeNode<Type>* PreOrderIterator<Type>::next()
+{
+	while(BaseIterator<Type>::current == NULL and !stack.is_empty())
+	{
+		BaseIterator<Type>::current = stack.pop();
+		BaseIterator<Type>::current = BaseIterator<Type>::current -> right_child;
+	}
+	if(BaseIterator<Type>::current==NULL and stack.is_empty())
+		return first();
+	stack.push(BaseIterator<Type>::current);
+	BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+	return stack.get_top_element();
+}
+
+template <typename Type>
 void PreOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 {
 	Stack<BinTreeNode<Type>*> s; //
-	BinTreeNode<Type>* curr_p = tree.get_root();
+	BinTreeNode<Type>* curr_p = BaseIterator<Type>::tree.get_root();
 	while(curr_p!=NULL or !s.is_empty())
 	{
 		if(curr_p != NULL)
@@ -75,10 +103,41 @@ void PreOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 }
 
 template <typename Type>
+BinTreeNode<Type>* InOrderIterator<Type>::first()
+{
+	BaseIterator<Type>::current = BaseIterator<Type>::tree.get_root();
+	if(BaseIterator<Type>::current==NULL)
+		return BaseIterator<Type>::current;
+	while(BaseIterator<Type>::current != NULL)
+	{
+		stack.push(BaseIterator<Type>::current);
+		BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+	}
+	BaseIterator<Type>::current = stack.get_top_element();
+	BaseIterator<Type>::current = BaseIterator<Type>::current -> right_child;
+	return stack.pop();
+}
+
+template <typename Type>
+BinTreeNode<Type>* InOrderIterator<Type>::next()
+{
+	while(BaseIterator<Type>::current != NULL)
+	{
+		stack.push(BaseIterator<Type>::current);
+		BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+	}
+	if(BaseIterator<Type>::current==NULL and stack.is_empty())
+		return first();
+	BaseIterator<Type>::current = stack.get_top_element();
+	BaseIterator<Type>::current = BaseIterator<Type>::current -> right_child;
+	return stack.pop();
+}
+
+template <typename Type>
 void InOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 {
 	Stack<BinTreeNode<Type>*> s;
-	BinTreeNode<Type>* curr_p = tree.get_root();
+	BinTreeNode<Type>* curr_p = BaseIterator<Type>::tree.get_root();
 	while(curr_p!=NULL or !s.is_empty())
 	{
 		if(curr_p != NULL)
@@ -96,10 +155,59 @@ void InOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 }
 
 template <typename Type>
+BinTreeNode<Type>* PostOrderIterator<Type>::first()
+{
+	BaseIterator<Type>::current = BaseIterator<Type>::tree.get_root();
+	if(BaseIterator<Type>::current == NULL)
+		return BaseIterator<Type>::current;
+	while(true)
+	{
+		while(BaseIterator<Type>::current != NULL)
+		{
+			stack.push(BaseIterator<Type>::current);
+			BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+		}
+		BaseIterator<Type>::current = stack.get_top_element();
+		if(BaseIterator<Type>::current->right_child == NULL or BaseIterator<Type>::current->right_child == pre)
+			break;
+		else
+			BaseIterator<Type>::current = BaseIterator<Type>::current -> right_child;
+	}
+	pre = BaseIterator<Type>::current;
+	stack.pop();
+	BaseIterator<Type>::current = NULL;
+	return pre;
+}
+
+template <typename Type>
+BinTreeNode<Type>* PostOrderIterator<Type>::next()
+{
+	if(BaseIterator<Type>::current==NULL and stack.is_empty())
+		return first();
+	while(true)
+	{
+		while(BaseIterator<Type>::current != NULL)
+		{
+			stack.push(BaseIterator<Type>::current);
+			BaseIterator<Type>::current = BaseIterator<Type>::current -> left_child;
+		}
+		BaseIterator<Type>::current = stack.get_top_element();
+		if(BaseIterator<Type>::current->right_child == NULL or BaseIterator<Type>::current->right_child == pre)
+			break;
+		else
+			BaseIterator<Type>::current = BaseIterator<Type>::current -> right_child;
+	}
+	pre = BaseIterator<Type>::current;
+	stack.pop();
+	BaseIterator<Type>::current = NULL;
+	return pre;
+}
+
+template <typename Type>
 void PostOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 {
 	Stack<BinTreeNode<Type>*> s;
-	BinTreeNode<Type>* curr_p = tree.get_root();
+	BinTreeNode<Type>* curr_p = BaseIterator<Type>::tree.get_root();
 	BinTreeNode<Type>* previsited = NULL;
 	while(curr_p!=NULL or !s.is_empty())
 	{

@@ -1,17 +1,27 @@
 #include "binary_tree.h"
 #include <iostream>
 
+using namespace std;
 BinaryTree<char>& get_char_tree();
 
 int main()
 {
 	BinaryTree<char> tree = get_char_tree();
-	tree.pre_order(tree.get_root());
-	std::cout << "-----------" << std::endl;
-	tree.in_order(tree.get_root());
-	std::cout << "-----------" << std::endl;
-	tree.post_order(tree.get_root());
-
+	cout << tree.count() << endl;                    // 6
+	cout << tree.get_root() -> element << endl;      // A
+	tree.pre_order();                                // ABDCEF
+	cout << endl;
+	tree.in_order();                                 // BDAECF
+	cout << endl;
+	tree.post_order();                               // DBEFCA
+	cout << endl;
+	BinaryTree<char> clonetree(tree);
+	clonetree.pre_order();                           // ABDCEF
+	cout << endl;
+	clonetree.clear();
+	cout << clonetree.is_empty() << endl;            // 1
+	clonetree = tree;
+	cout << clonetree.count() << endl;               // 6
 	
 	return 0;
 }

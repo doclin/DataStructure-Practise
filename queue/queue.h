@@ -6,7 +6,7 @@ template <typename Type>
 class Queue
 {
 private:
-	LinkedList list;
+	LinkedList<Type> list;
 public:
 	void enqueue(const Type&);
 	Type dequeue();

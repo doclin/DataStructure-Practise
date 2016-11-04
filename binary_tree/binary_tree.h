@@ -27,14 +27,19 @@ public:
 	BinaryTree(const BinaryTree&);
 	BinaryTree<Type>& operator=(const BinaryTree&);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
-	void clear(BinTreeNode<Type>* p);	
+	void clear(BinTreeNode<Type>* p);
+	void clear();		//
 	virtual ~BinaryTree();
 	virtual bool is_empty() const;
 	virtual int count(BinTreeNode<Type>* p) const;
+	virtual int count() const;//
 	virtual BinTreeNode<Type>* get_root() const { return root; }
 	virtual void pre_order(BinTreeNode<Type>* p) const;
 	virtual void in_order(BinTreeNode<Type>* p) const;
 	virtual void post_order(BinTreeNode<Type>* p) const;
+	virtual void pre_order() const;//
+	virtual void in_order() const;
+	virtual void post_order() const;	
 };
 
 
@@ -81,6 +86,12 @@ void BinaryTree<Type>::clear(BinTreeNode<Type>* p)
 }
 
 template <typename Type>
+void BinaryTree<Type>::clear()
+{
+	clear(root);
+}
+
+template <typename Type>
 BinTreeNode<Type>* BinaryTree<Type>::copy(BinTreeNode<Type>* p)
 {
 	if(p == NULL)
@@ -103,6 +114,12 @@ int BinaryTree<Type>::count(BinTreeNode<Type>* p) const
 	if(p == NULL)
 		return 0;
 	return 1 + count(p -> left_child) + count(p -> right_child);
+}
+
+template <typename Type>
+int BinaryTree<Type>::count() const
+{
+	return count(root);
 }
 
 template <typename Type>
@@ -136,6 +153,24 @@ void BinaryTree<Type>::post_order(BinTreeNode<Type>* p) const
 		post_order(p -> right_child);		
 		std::cout << p -> element << std::endl;
 	}
+}
+
+template <typename Type>
+void BinaryTree<Type>::pre_order() const
+{
+	pre_order(root);
+}
+
+template <typename Type>
+void BinaryTree<Type>::in_order() const
+{
+	in_order(root);
+}
+
+template <typename Type>
+void BinaryTree<Type>::post_order() const
+{
+	post_order(root);
 }
 
 

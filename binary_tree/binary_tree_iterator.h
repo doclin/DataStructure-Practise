@@ -5,7 +5,7 @@
 #include "../queue/queue.h"
 
 template <typename Type>
-class BaseIterator
+class BaseIterator                                                                          // 迭代器基类
 {
 protected:
 	BinaryTree<Type>& tree;
@@ -14,12 +14,12 @@ public:
 	BaseIterator(BinaryTree<Type>& bt): tree(bt), current(NULL) {}
 	virtual BinTreeNode<Type>* first()=0;
 	virtual BinTreeNode<Type>* next()=0;
-	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p))=0;
+	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p))=0;                  // 接受一个参数为树节点的函数指针
 };
 
 
 template <typename Type>
-class PreOrderIterator : public BaseIterator<Type>
+class PreOrderIterator : public BaseIterator<Type>                                          // 前序迭代器
 {
 	Stack<BinTreeNode<Type>*> stack;
 public:
@@ -31,7 +31,7 @@ public:
 
 
 template <typename Type>
-class InOrderIterator : public BaseIterator<Type>
+class InOrderIterator : public BaseIterator<Type>                                           // 中序迭代器
 {
 	Stack<BinTreeNode<Type>*> stack;
 public:
@@ -43,10 +43,10 @@ public:
 
 
 template <typename Type>
-class PostOrderIterator : public BaseIterator<Type>
+class PostOrderIterator : public BaseIterator<Type>                                         // 后序迭代器
 {
 	Stack<BinTreeNode<Type>*> stack;
-	BinTreeNode<Type>* pre;
+	BinTreeNode<Type>* pre;                                                             // 记录前一次访问的节点
 public:
 	PostOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt), pre(NULL) {}
 	virtual BinTreeNode<Type>* first();
@@ -56,7 +56,7 @@ public:
 
 
 template <typename Type>
-class LevelOrderIterator : public BaseIterator<Type>
+class LevelOrderIterator : public BaseIterator<Type>                                        // 层序迭代器
 {
 	Queue<BinTreeNode<Type>*> queue;
 public:
@@ -67,6 +67,7 @@ public:
 };
 
 
+//前序迭代器
 template <typename Type>
 BinTreeNode<Type>* PreOrderIterator<Type>::first()
 {
@@ -97,7 +98,8 @@ BinTreeNode<Type>* PreOrderIterator<Type>::next()
 template <typename Type>
 void PreOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 {
-	Stack<BinTreeNode<Type>*> s; //
+	Stack<BinTreeNode<Type>*> s;             
+        // 此方法为独立遍历全树，可在任何时间调用，不共享类成员栈
 	BinTreeNode<Type>* curr_p = BaseIterator<Type>::tree.get_root();
 	while(curr_p!=NULL or !s.is_empty())
 	{
@@ -115,6 +117,8 @@ void PreOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 	}
 }
 
+
+//中序迭代器
 template <typename Type>
 BinTreeNode<Type>* InOrderIterator<Type>::first()
 {
@@ -167,6 +171,8 @@ void InOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 	}
 }
 
+
+//后序迭代器
 template <typename Type>
 BinTreeNode<Type>* PostOrderIterator<Type>::first()
 {
@@ -243,6 +249,8 @@ void PostOrderIterator<Type>::traverse(void (* func)(BinTreeNode<Type>* node_p))
 
 }	
 
+
+//层序迭代器
 template <typename Type>
 BinTreeNode<Type>* LevelOrderIterator<Type>::first()
 {

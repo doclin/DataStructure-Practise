@@ -28,16 +28,16 @@ public:
 	BinaryTree<Type>& operator=(const BinaryTree&);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
 	void clear(BinTreeNode<Type>* p);
-	void clear();		//
+	void clear();		                                      // 重载提供外部接口，清空树
 	virtual ~BinaryTree();
 	virtual bool is_empty() const;
 	virtual int count(BinTreeNode<Type>* p) const;
-	virtual int count() const;//
+	virtual int count() const;                                    // 重载提供外部接口，计算树中元素个数
 	virtual BinTreeNode<Type>* get_root() const { return root; }
-	virtual void pre_order(BinTreeNode<Type>* p) const;
+	virtual void pre_order(BinTreeNode<Type>* p) const;           // 三种递归输出遍历
 	virtual void in_order(BinTreeNode<Type>* p) const;
 	virtual void post_order(BinTreeNode<Type>* p) const;
-	virtual void pre_order() const;//
+	virtual void pre_order() const;                               // 重载提供外部接口
 	virtual void in_order() const;
 	virtual void post_order() const;	
 };

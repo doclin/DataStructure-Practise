@@ -10,11 +10,11 @@ class CompleteBinTree : public BinaryTree<Type>
 public:
 	CompleteBinTree() : BinaryTree<Type>::BinaryTree() {}
 	CompleteBinTree(const Type& x) : BinaryTree<Type>::BinaryTree(x) {}
-	CompleteBinTree(Type* p, int len);
+	CompleteBinTree(Type* p, int len);                                                              // 接受数组参数构造完全二叉树
 	CompleteBinTree(const CompleteBinTree& t) : BinaryTree<Type>::BinaryTree(t) {}
 	CompleteBinTree<Type>& operator=(const CompleteBinTree& t);
 	virtual ~CompleteBinTree() {}
-	virtual void make_complete_tree(Type* p, int len);
+	virtual void make_complete_tree(Type* p, int len);                                              // 重建完全二叉树
 };
 
 template <typename Type>

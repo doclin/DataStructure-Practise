@@ -14,7 +14,7 @@ struct SeqNode
 
 SeqNode<char>* get_char_sequence()
 {
-	SeqNode<char>* arr = new SeqNode<char>[8];
+	SeqNode<char>* arr = new SeqNode<char>[8]; //
 	arr[0].element = 'A';
 	arr[0].parent = 0;
 	arr[0].flag = false;
@@ -44,16 +44,16 @@ SeqNode<char>* get_char_sequence()
 }
 
 template <typename Type>
-BinaryTree<Type>& get_tree(SeqNode<Type>* array, int length)
+BinaryTree<Type> get_tree(SeqNode<Type>* array, int length)
 {
 	if(length == 0)
 	{
-		BinaryTree<Type>* empty_tree = new BinaryTree<Type>;
-		return *empty_tree;
+		BinaryTree<Type> empty_tree;
+		return empty_tree;
 	}
 	Queue<BinTreeNode<Type>*> queue;
-	BinaryTree<Type>* tree = new BinaryTree<Type>(array[0].element);
-	queue.enqueue(tree -> get_root());
+	BinaryTree<Type> tree = BinaryTree<Type>(array[0].element);
+	queue.enqueue(tree.get_root());
 	for(int i=1; i<length; i++)
 	{
 		while(queue.get_front_element()->element != array[i].parent)
@@ -70,7 +70,7 @@ BinaryTree<Type>& get_tree(SeqNode<Type>* array, int length)
 		}
 	}
 
-	return *tree;
+	return tree;
 }
 
 int main()
@@ -82,6 +82,7 @@ int main()
 	tree.in_order();                   // BDAGEHCF
 	cout << endl;
 	tree.post_order();                 // DBGHEFCA
+	delete array;
 
 	return 0;
 }

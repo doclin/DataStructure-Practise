@@ -19,7 +19,7 @@ public:
 template <typename Type>
 class BinaryTree
 {
-private:
+protected:
 	BinTreeNode<Type>* root;
 public:
 	BinaryTree(): root(NULL) {}

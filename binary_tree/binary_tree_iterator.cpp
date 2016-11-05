@@ -4,17 +4,17 @@
 
 using namespace std;
 
-BinaryTree<char>& get_char_tree()
+BinaryTree<char> get_char_tree()
 {
-	BinaryTree<char>* tree = new BinaryTree<char>('A');
-	BinTreeNode<char>* p = tree -> get_root();
+	BinaryTree<char> tree = BinaryTree<char>('A');
+	BinTreeNode<char>* p = tree.get_root();
 	p -> left_child = new BinTreeNode<char>('B');
 	p -> right_child = new BinTreeNode<char>('C');
 	p -> left_child -> right_child = new BinTreeNode<char>('D');
 	p -> right_child -> left_child = new BinTreeNode<char>('E');
 	p -> right_child -> right_child = new BinTreeNode<char>('F');
 
-	return *tree;
+	return tree;
 }
 
 void func(BinTreeNode<char>* node_p)

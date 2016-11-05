@@ -11,7 +11,9 @@
         │   ├── binary_tree.cpp
         │   ├── binary_tree.h
         │   ├── binary_tree_iterator.cpp
-        │   └── binary_tree_iterator.h
+        │   ├── binary_tree_iterator.h
+        │   ├── complete_binary_tree.cpp
+        │   └── complete_binary_tree.h
         ├── linear_lists
         │   ├── linear_list.h
         │   ├── linked_list
@@ -30,14 +32,25 @@
         │   ├── 1_2.cpp
         │   ├── 1_3.cpp
         │   ├── 1_4.cpp
-        │   └── 1_5.cpp
+        │   ├── 1_5.cpp
+        │   ├── 3_1.cpp
+        │   ├── 3_2.cpp
+        │   ├── 4_2.cpp
+        │   ├── 4_4.cpp
+        │   └── 5_0.cpp
+        ├── questions
+        │   ├── fifth_exercise.txt
+        │   ├── first_exercise.txt
+        │   ├── forth_exercise.txt
+        │   ├── second_exercise.txt
+        │   └── third_exercise.txt
         ├── queue
         │   ├── queue.cpp
         │   └── queue.h
         ├── README.md
         └── stack
-            ├── 3_1.cpp
             ├── stack.cpp
             └── stack.h
+
 
 

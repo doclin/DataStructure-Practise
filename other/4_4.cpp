@@ -23,13 +23,13 @@ void traverse_in_level(BinaryTree<Type> tree, int level)
 {
 	Queue<BinTreeNode<Type>*> queue;
 	BinTreeNode<Type>* current = tree.get_root();
-	if(current == NULL)
+	if(current == NULL)                                          // When tree is empty
 		return;
 	queue.enqueue(current);
-	queue.enqueue(NULL);
+	queue.enqueue(NULL);                                         // Notify each level
 	for(int i=1; i<level; i++)
 	{
-		while(queue.get_front_element()!=NULL)
+		while(queue.get_front_element()!=NULL)                   // Judge when the level is end
 		{
 			current = queue.dequeue();
 			if(current -> left_child != NULL)
@@ -37,11 +37,11 @@ void traverse_in_level(BinaryTree<Type> tree, int level)
 			if(current -> right_child != NULL)
 				queue.enqueue(current->right_child);
 		}
-		queue.dequeue();
-		queue.enqueue(NULL);
+		queue.dequeue();                                         // Dequeue the last NULL in queue
+		queue.enqueue(NULL);                                     // Notify a new level
 	}
 	Stack<BinTreeNode<Type>*> stack;
-	while(queue.get_front_element() != NULL)
+	while(queue.get_front_element() != NULL)                     // turn around
 	{
 		current = queue.dequeue();
 		stack.push(current);

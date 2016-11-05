@@ -28,7 +28,7 @@ public:
 	BinaryTree<Type>& operator=(const BinaryTree&);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
 	void clear(BinTreeNode<Type>* p);
-	void clear();		                                      // 重载提供外部接口，清空树
+	void clear();		                                          // 重载提供外部接口，清空树
 	virtual ~BinaryTree();
 	virtual bool is_empty() const;
 	virtual int count(BinTreeNode<Type>* p) const;

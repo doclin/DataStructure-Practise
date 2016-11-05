@@ -5,16 +5,16 @@
 using namespace std;
 
 template <typename Type>
-struct SeqNode
+struct SeqNode                                  // 序列节点
 {
 	Type element;
 	Type parent;
-	bool flag;//
+	bool flag;                                  // 判断是否是唯一右节点
 };
 
-SeqNode<char>* get_char_sequence()
+SeqNode<char>* get_char_sequence()              // 获取序列
 {
-	SeqNode<char>* arr = new SeqNode<char>[8]; //
+	SeqNode<char>* arr = new SeqNode<char>[8];  // *存在隐患*
 	arr[0].element = 'A';
 	arr[0].parent = 0;
 	arr[0].flag = false;
@@ -46,7 +46,7 @@ SeqNode<char>* get_char_sequence()
 template <typename Type>
 BinaryTree<Type> get_tree(SeqNode<Type>* array, int length)
 {
-	if(length == 0)
+	if(length == 0)                                                                             // return empty tree
 	{
 		BinaryTree<Type> empty_tree;
 		return empty_tree;
@@ -56,7 +56,7 @@ BinaryTree<Type> get_tree(SeqNode<Type>* array, int length)
 	queue.enqueue(tree.get_root());
 	for(int i=1; i<length; i++)
 	{
-		while(queue.get_front_element()->element != array[i].parent)
+		while(queue.get_front_element()->element != array[i].parent)                            // find parent
 			queue.dequeue();
 		if(queue.get_front_element()->left_child!=NULL or array[i].flag==true)
 		{

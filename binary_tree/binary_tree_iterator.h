@@ -14,7 +14,7 @@ public:
 	BaseIterator(BinaryTree<Type>& bt): tree(bt), current(NULL) {}
 	virtual BinTreeNode<Type>* first()=0;
 	virtual BinTreeNode<Type>* next()=0;
-	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p))=0;                  // 接受一个参数为树节点的函数指针
+	virtual void traverse(void (* func)(BinTreeNode<Type>* node_p))=0;                      // 接受一个参数为树节点的函数指针
 };
 
 
@@ -46,7 +46,7 @@ template <typename Type>
 class PostOrderIterator : public BaseIterator<Type>                                         // 后序迭代器
 {
 	Stack<BinTreeNode<Type>*> stack;
-	BinTreeNode<Type>* pre;                                                             // 记录前一次访问的节点
+	BinTreeNode<Type>* pre;                                                                 // 记录前一次访问的节点
 public:
 	PostOrderIterator(BinaryTree<Type>& bt): BaseIterator<Type>::BaseIterator(bt), pre(NULL) {}
 	virtual BinTreeNode<Type>* first();

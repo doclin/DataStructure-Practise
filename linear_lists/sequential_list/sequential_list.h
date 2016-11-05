@@ -14,7 +14,7 @@ private:
 	int max_size;
 	int len;
 public:
-	SequentialList(int max_size_=1);                                     // Constructor
+	SequentialList(int max_size_=99);                                    // Constructor
 	SequentialList(const SequentialList& s);                             // Copy constructor
 	virtual SequentialList<Type>& operator=(const SequentialList& s);
 	virtual ~SequentialList();                                           // Destructor

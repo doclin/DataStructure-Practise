@@ -29,7 +29,7 @@ void traverse_in_level(BinaryTree<Type> tree, int level)
 	queue.enqueue(NULL);                                         // Notify each level
 	for(int i=1; i<level; i++)
 	{
-		while(queue.get_front_element()!=NULL)                   // Judge when the level is end
+		while(queue.get_front_element()!=NULL)                   // Judge when the level ends
 		{
 			current = queue.dequeue();
 			if(current -> left_child != NULL)

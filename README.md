@@ -37,7 +37,7 @@
         │   ├── 3_2.cpp
         │   ├── 4_2.cpp
         │   ├── 4_4.cpp
-        │   └── 5_0.cpp
+        │   └── 5_0.cpp                              // 不完全符合要求，算法参照iterator
         ├── questions                                // 练习题目
         │   ├── fifth_exercise.txt
         │   ├── first_exercise.txt

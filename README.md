@@ -8,12 +8,12 @@
 
 ## 目录结构说明
         ├── binary_tree
-        │   ├── binary_tree.cpp                      //
+        │   ├── binary_tree.cpp                      // 测试接口与调用示例
         │   ├── binary_tree.h
         │   ├── binary_tree_iterator.cpp
-        │   ├── binary_tree_iterator.h               //
+        │   ├── binary_tree_iterator.h               // 提供四种遍历方法迭代器(4_1)
         │   ├── complete_binary_tree.cpp
-        │   └── complete_binary_tree.h
+        │   └── complete_binary_tree.h               // (4_3)
         ├── linear_lists
         │   ├── linear_list.h
         │   ├── linked_list
@@ -22,12 +22,12 @@
         │   │   ├── linked_list.cpp
         │   │   └── linked_list.h
         │   ├── polynomial.cpp
-        │   ├── polynomial.h                         //
-        │   ├── polynomial_main.cpp                  //
+        │   ├── polynomial.h                         // (2_0)
+        │   ├── polynomial_main.cpp                  // 需与polynomial.cpp共同编译
         │   └── sequential_list
         │       ├── sequential_list.cpp
         │       └── sequential_list.h
-        ├── other                                    //
+        ├── other                                    // 其他题目解答
         │   ├── 1_1.cpp
         │   ├── 1_2.cpp
         │   ├── 1_3.cpp
@@ -38,7 +38,7 @@
         │   ├── 4_2.cpp
         │   ├── 4_4.cpp
         │   └── 5_0.cpp
-        ├── questions                                //
+        ├── questions                                // 练习题目
         │   ├── fifth_exercise.txt
         │   ├── first_exercise.txt
         │   ├── forth_exercise.txt

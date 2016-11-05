@@ -1,0 +1,23 @@
+   1. Create a console application in your IDE, and input:
+
+//this is the first C++ program
+#include <iostream>
+using namespace std;
+int main() {
+   cout<<"Hello, World!"<<endl;
+   getchar();
+}
+
+    If you have found some unexpected files in your project, such as stdafx.h, stdafx.cpp and so on, delete them. In Qt，there is a .pro file, which is used to produce makefile. Please make clear the directory structure in your IDE.
+
+   You can press F5 or Ctrl+F5 to run the program, what is the difference between them?
+
+   2. Inspect the following snippet:
+char c='6';
+const int &rc=c;
+int i=8;
+const int &ri=i;
+   Try to compare (&rc==&c) and (&ri==&i). Why are they different?
+   3. Suppose there are three variables: int i,int j,int k. After calling sort(i,j,k)，the values of i,j,k will be changed into ascending order。Finish the definition of sort()。
+   4. Define a class with explicitly defined constructor and destructor, both of which can display some corresponding information. Create two local objects and two global objects of this class, and inspect the sequence of execution of their constructors and destructors. Can you explain the result?
+   5. Write a program to solve Joseph Problem, using array as your data structure. Suppose there are n people sitting around to form a ring and every people has its number from 1 to n. All the people still in the ring will number off one by one from 1 to r, and the r-th people will leave the ring. The process will repeat many times until all the people leave the ring. Give the sequence of poeople leaving the ring. 

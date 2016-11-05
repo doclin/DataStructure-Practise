@@ -1,5 +1,11 @@
+The following program is about post-order iterator of a binary tree. In this program, a statck is used to save some temporay information. In the code of our presentation in class, each node will be pushed into and poped from the stack three times. Now ,please design a new algorithm to impement the post-order iterator where each node will be pushed into and poped from the stack only two times.
+
+Most of the code is available, please fufil the function operator ++().
+
+
+
 #include <iostream>
-#include "../stack/stack.h"
+#include <QStack>
 
 template <class Type> struct BTNode{
     BTNode *left;
@@ -53,19 +59,19 @@ template <class Type> struct StkNode {
 template <class Type> class PostOrder : public TreeIterator <Type> {
     bool renew;
 public:
-    PostOrder ( const BinaryTree <Type> & BT ): TreeIterator<Type>::TreeIterator(BT){renew=false;}
+    PostOrder ( const BinaryTree <Type> & BT ):TreeIterator(BT){renew=false;}
     ~PostOrder ( ) { }
     void First ( );
     //Seek to the first node in postorder traversal
     void operator ++ ( );
     //Seek to the successor
 protected:
-    Stack < StkNode<Type> > st;     //Active record stack
+    QStack < StkNode<Type> > st;     //Active record stack
 };
 
 template <class Type>
 void PostOrder<Type>::First(){
-    TreeIterator<Type>::current = TreeIterator<Type>::T.root;
+    current = T.root;
     st.clear();
     renew=true;
     operator++();

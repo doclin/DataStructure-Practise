@@ -1,0 +1,10 @@
+   Assignment:
+   (1) Implement the inorder traversal of a binary tree without using the recursive method(Hint:  using a stack).
+   (2) Given the sequence of lever order, with the parent node of each element，write a function to construct the corresponding binary tree. For example, the sequence: A B(A) C(A) D(BR) E(C) F(C) G(E) H(E), represents such a binary tree as follows:
+       A
+   B       C
+     D   E   F
+        G  H
+    where, D(BR) means that D is the mere right child of B.
+    (3) Given an array, turn it into a complete binary tree stored in a doubly-linked list.
+    (4) Suppose a binary tree is stored in a doubly-linked list, and the level of root node is 1. Design an algorithm to traverse all the nodes in level i（i>0）from right to left.

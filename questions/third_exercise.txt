@@ -1,0 +1,10 @@
+   Assignment:
+   (1) Suppose the coming sequence into a stack is: 1，2，3，4. Write a function to print all the possibilities of output sequence.
+   (2) Input a positive integer n(n>=3)，write a function to print all the possibilities of combination of 1,1,2,2,3,3,......,n,n( 2n numbers altogether) that satisfies：
+    there is 1 integer between two “1”s
+    there are 2 integers between two “2”s
+    there are 3 integers between two “3”s
+    ......
+    there are n integers between two “n”s
+    for example of 3，the two possible sequence are:231213 or 312132.
+    Pay attention, there may be 0 or many possible sequences, print them all。

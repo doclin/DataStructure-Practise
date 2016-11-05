@@ -1,0 +1,19 @@
+   Write a program that produces the result of multiplication of two polynomials, based on the source code for addtition.
+   The function main() should be like this:
+int main()
+{
+   Polynomial ah,bh,ch;
+   ah.inputPoly();      //input polynomial a
+   ah.outputPoly();
+   bh.inputPoly();      //input polynomial b
+   bh.outputPoly();
+   ch = ah*bh;
+   ch.outputPoly();    //output the result
+   return 0;
+}
+Pay attention to the following demands:
+
+   (1)Both sequential storage and linked storage approach can be adopted.
+   (2)Minus exponent is allowed.
+   (3)The result must be stored in a newly-created polynomial, keeping ah and bh unchanged. 
+

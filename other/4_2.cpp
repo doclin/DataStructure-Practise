@@ -9,10 +9,10 @@ struct SeqNode                                  // 序列节点
 {
 	Type element;
 	Type parent;
-	bool flag;                                  // 判断是否是唯一右节点
+	bool flag;                                  // 标明是否是唯一右节点
 };
 
-SeqNode<char>* get_char_sequence()              // 获取序列
+SeqNode<char>* get_char_sequence()              // 获取用于创建树的格式化序列
 {
 	SeqNode<char>* arr = new SeqNode<char>[8];  // *存在隐患*
 	arr[0].element = 'A';
@@ -58,7 +58,7 @@ BinaryTree<Type> get_tree(SeqNode<Type>* array, int length)
 	{
 		while(queue.get_front_element()->element != array[i].parent)                            // find parent
 			queue.dequeue();
-		if(queue.get_front_element()->left_child!=NULL or array[i].flag==true)
+		if(queue.get_front_element()->left_child!=NULL or array[i].flag==true)                  // left or right
 		{
 			queue.get_front_element() -> right_child = new BinTreeNode<Type>(array[i].element);
 			queue.enqueue(queue.get_front_element() -> right_child);

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-BinaryTree<char> get_char_tree()
+BinaryTree<char> get_char_tree()                                 // 获取测试用树
 {
 	BinaryTree<char> tree = BinaryTree<char>('A');
 	BinTreeNode<char>* p = tree.get_root();
@@ -26,7 +26,7 @@ void traverse_in_level(BinaryTree<Type> tree, int level)
 	if(current == NULL)                                          // When tree is empty
 		return;
 	queue.enqueue(current);
-	queue.enqueue(NULL);                                         // Notify each level
+	queue.enqueue(NULL);                                         // Notify each level by put NULL in queue
 	for(int i=1; i<level; i++)
 	{
 		while(queue.get_front_element()!=NULL)                   // Judge when the level ends

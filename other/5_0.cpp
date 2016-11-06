@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../stack/stack.h"
+#include "../stack/stack.h"                            // 没有Qt开发环境，将此处换成个人定义类
 
 template <class Type> struct BTNode{
     BTNode *left;
@@ -53,7 +53,7 @@ template <class Type> struct StkNode {
 template <class Type> class PostOrder : public TreeIterator <Type> {
     bool renew;
 public:
-    PostOrder ( const BinaryTree <Type> & BT ): TreeIterator<Type>::TreeIterator(BT){renew=false;}
+    PostOrder ( const BinaryTree <Type> & BT ): TreeIterator<Type>::TreeIterator(BT){renew=false;} // 编译不过，模板类继承出现问题，进行了修改
     ~PostOrder ( ) { }
     void First ( );
     //Seek to the first node in postorder traversal
@@ -78,28 +78,28 @@ void PostOrder<Type>::operator ++(){
         return;
     }
     renew = false;
-    const BTNode<Type> *p = TreeIterator<Type>::T.root;
+    const BTNode<Type> *p = TreeIterator<Type>::T.root;                                   // p为判断是否执行向左移动循环的flag，与题目原意有出入
     StkNode<Type> w;
     do{
-        while(TreeIterator<Type>::current == p and TreeIterator<Type>::current != NULL )
+        while(TreeIterator<Type>::current == p and TreeIterator<Type>::current != NULL )  // 向左移动到底
         {
             StkNode<Type> n(TreeIterator<Type>::current);
             st.push(n);
             p = TreeIterator<Type>::current = TreeIterator<Type>::current -> left;
         }
-        w = st.pop();
+        w = st.pop();                                                                     // 第一次出栈
         TreeIterator<Type>::current = w.Node;
-        w.PopTime++;        
-        if(w.PopTime==1)
+        w.PopTime++;                                                                      // 记录++
+        if(w.PopTime==1)                                                                  // 判断出栈次数
         {
-            st.push(w);
-            if(TreeIterator<Type>::current->right == NULL)
+            st.push(w);                                                                   // 第二次入栈
+            if(TreeIterator<Type>::current->right == NULL)                                // 右节点空直接弹出，结束
             {
                 w = st.pop();
                 TreeIterator<Type>::current = w.Node;
                 break;
             }
-            else
+            else                                                                          // 否则遍历右节点
             {
                 TreeIterator<Type>::current = TreeIterator<Type>::current -> right;
                 p = TreeIterator<Type>::current;
@@ -108,7 +108,7 @@ void PostOrder<Type>::operator ++(){
         if(w.PopTime==2)
             break;
     }
-    while( TreeIterator<Type>::current || !st.is_empty( ));
+    while( TreeIterator<Type>::current || !st.is_empty( ));                                // 判断条件有改动
 }
 
 int main(){

@@ -22,12 +22,12 @@ CompleteBinTree<Type>::CompleteBinTree(Type* p, int len)
 {
 	if(len > 0)
 	{
-		Queue<BinTreeNode<Type>*> queue;
+		Queue<BinTreeNode<Type>*> queue;                                                            // 利用队列
 		BinaryTree<Type>::root = new BinTreeNode<Type>(p[0]);
 		queue.enqueue(BinaryTree<Type>::root);
 		for(int i=1; i<len; i++)
 		{
-			if(queue.get_front_element()->left_child == NULL)
+			if(queue.get_front_element()->left_child == NULL)                                       // 判断左节点或右节点
 			{
 				queue.get_front_element() -> left_child = new BinTreeNode<Type>(p[i]);
 				queue.enqueue(queue.get_front_element() -> left_child);

@@ -4,28 +4,35 @@
 
 using namespace std;
 
-bool is_valid(SequentialList<bool> sequence, int goal_num)   //
+bool is_valid(SequentialList<bool> sequence, int goal_num)   // 判断当前解序列是否正确
 {
-	int push_num = 0;       //1
-	int total_push_num = 0;
+	int push_num = 0;                                        // 记录净压入次数
+	int total_push_num = 0;                                  // 记录总压入次数
 	for(int i=0; i<sequence.length(); i++)
 	{
-		if(sequence[i] == 1)   //
+		if(sequence[i] == 1)                                 // 1为压入
 		{
 			push_num++;
 			total_push_num++;
 		}
 		if(sequence[i] == 0)
 			push_num--;
-		if(push_num < 0 or total_push_num > goal_num)
+		if(push_num < 0 or total_push_num > goal_num)        // 如果出栈多于入栈或压入次数大于元素个数
 			return false;
 	}
 	return true;
 }
 
-void get_result_sequence(SequentialList<bool> sequence, int goal_num, Stack< SequentialList<bool> >& result)                //
+/*
+回溯法获得解序列：
+sequence: 当前部分解序列，包含递归规模变化
+goal_num: 总元素个数，不变
+result: 为避免使用全局变量，用于存储有效解的栈
+最终获得的解序列是长度为goal_num两倍的bool序列，1表示压入，0表示弹出，每个解序列对应唯一的输出结果
+*/
+void get_result_sequence(SequentialList<bool> sequence, int goal_num, Stack< SequentialList<bool> >& result)
 {
-	if(sequence.length() == goal_num*2)        //
+	if(sequence.length() == goal_num*2)                      // 两倍长度
 	{
 		result.push(sequence);
 		return;
@@ -33,7 +40,7 @@ void get_result_sequence(SequentialList<bool> sequence, int goal_num, Stack< Seq
 	else
 	{
 		sequence.append(1);
-		if(is_valid(sequence, goal_num))
+		if(is_valid(sequence, goal_num))                     // 进入下一层
 			get_result_sequence(sequence, goal_num, result);
 		sequence.remove(sequence.length()-1);
 		sequence.append(0);
@@ -42,9 +49,9 @@ void get_result_sequence(SequentialList<bool> sequence, int goal_num, Stack< Seq
 	}
 }
 
-void show_result(Stack< SequentialList<bool> > result, int* array)
+void show_result(Stack< SequentialList<bool> > result, int* array)               // 将获得的解集打印出来
 {
-	SequentialList<bool> sequence;                          //
+	SequentialList<bool> sequence;                                               // 两个tempt容器
 	Stack<int> stack;
 	while(!result.is_empty())
 	{

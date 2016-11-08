@@ -82,7 +82,7 @@ int main()
 	tree.in_order();                   // BDAGEHCF
 	cout << endl;
 	tree.post_order();                 // DBGHEFCA
-	delete array;
+	delete [] array;
 
 	return 0;
 }

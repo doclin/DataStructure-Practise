@@ -52,5 +52,7 @@
             ├── stack.cpp
             └── stack.h
 
-
-
+编译环境：
+* Ubuntu14.04 gcc(4.8.4)
+* Ubuntu14.04 clang(3.8)
+* Windows10 Dev-c++(gcc)

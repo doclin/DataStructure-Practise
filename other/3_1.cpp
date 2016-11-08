@@ -78,7 +78,7 @@ int main()
 	SequentialList<bool> sequence;
 	Stack< SequentialList<bool> > result;
 	get_result_sequence(sequence, 4, result);
-	int array[4] {1, 2, 3, 4};
+	int array[4] = {1, 2, 3, 4};
 	/*
 	while(!result.is_empty())
 	{

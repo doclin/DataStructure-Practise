@@ -71,7 +71,8 @@ Stack<Type>& Stack<Type>::operator=(const Stack& s)
 		top -> pointer_to_next -> pointer_to_prior = top;
 		top = top -> pointer_to_next;
 		p_original = p_original -> pointer_to_next;
-	}	
+	}
+	return *this;
 }
 
 template <typename Type>
@@ -108,7 +109,7 @@ bool Stack<Type>::clear()
 		top = top -> pointer_to_prior;
 		delete (top -> pointer_to_next);
 	}
-
+	return true;
 }
 
 template <typename Type>

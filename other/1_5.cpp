@@ -9,7 +9,7 @@ void test_of_joseph(int[], int, int); // executed in array by loop
 
 int main()
 {
-	int * p = new int [N] {0};
+	int * p = new int [N]();
 	test_of_joseph(p, R, N);
 	int result = func_of_joseph(N, R);
 	cout << "the func last one is " << result << "th" << endl;

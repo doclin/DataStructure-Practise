@@ -1,7 +1,7 @@
 #ifndef _POLYNOMIAL_H_INCLUDED_
 #define _POLYNOMIAL_H_INCLUDED_
 
-#include "linked_list.h"
+#include "linked_list/linked_list.h"
 
 class Polynomial;                                                            // Declare at first
 
@@ -9,7 +9,7 @@ class Polynomial;                                                            // 
 class Term                                                                   // To storage one single element of polynomila
 {
 private:
-	friend Polynomial;                                                       // To make Polynomial have access to private data
+	friend class Polynomial;                                                 // To make Polynomial have access to private data
 	friend bool operator==(const Term& t1, const Term& t2);                  // Overrite to fit the function in its father class
 	friend Term operator*(const Term& t1, const Term& t2);                   // Base method designed for Polynomial's muti method
 	int exp;

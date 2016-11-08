@@ -9,7 +9,7 @@ template <typename Type> class DBCLinkedList;                              // De
 template <typename Type>
 class DBNode
 {
-	friend DBCLinkedList<Type>;
+	friend class DBCLinkedList<Type>;
 private:
 	Type element;
 	DBNode<Type>* pointer_to_next;
@@ -95,6 +95,7 @@ DBCLinkedList<Type>& DBCLinkedList<Type>::operator=(const DBCLinkedList& l)
 	}
 	tem_p_new -> pointer_to_next = last_p;
 	last_p -> pointer_to_prior = tem_p_new;
+	return *this;
 }
 
 template <typename Type>

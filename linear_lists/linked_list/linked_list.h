@@ -9,7 +9,7 @@ template <typename Type> class LinkedList;                         // Declare at
 template <typename Type>
 class Node
 {
-	friend LinkedList<Type>;
+	friend class LinkedList<Type>;
 private:
 	Type element;
 	Node<Type>* pointer_to_next;
@@ -88,6 +88,7 @@ LinkedList<Type>& LinkedList<Type>::operator=(const LinkedList& l)
 	    }
 	    last_p = tem_p_new;
     }	
+    return *this;
 }
 
 template <typename Type>

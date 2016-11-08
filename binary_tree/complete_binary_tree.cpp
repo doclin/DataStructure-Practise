@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	char array[8] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+	char array[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 	CompleteBinTree<char> tree(array, 8);
 	tree.pre_order();        // ABDHECFG
 	cout << endl;

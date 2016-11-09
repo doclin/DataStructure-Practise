@@ -42,8 +42,9 @@ public:
 	virtual bool is_empty() const;
 	virtual bool is_full() const;
 	virtual bool clear();
-	virtual Type& get(int) const;
-	virtual Type& operator[](int) const;
+	virtual const Type& get(int) const;
+	virtual const Type& operator[](int) const;
+	virtual Type& operator[](int);
 };
 
 
@@ -224,7 +225,7 @@ bool DBCLinkedList<Type>::clear()
 }
 
 template <typename Type>
-Type& DBCLinkedList<Type>::get(int i) const
+const Type& DBCLinkedList<Type>::get(int i) const
 {
 	DBNode<Type>* curr_p = first_p -> pointer_to_next;
 	for(int j=0; j<i; j++)
@@ -233,12 +234,21 @@ Type& DBCLinkedList<Type>::get(int i) const
 }
 
 template <typename Type>
-Type& DBCLinkedList<Type>::operator[](int i) const
+const Type& DBCLinkedList<Type>::operator[](int i) const
 {
 	DBNode<Type>* curr_p = first_p -> pointer_to_next;
 	for(int j=0; j<i; j++)
 		curr_p = curr_p -> pointer_to_next;
 	return curr_p -> element;
+}
+
+template <typename Type>
+Type& DBCLinkedList<Type>::operator[](int i)
+{
+	DBNode<Type>* curr_p = first_p -> pointer_to_next;
+	for(int j=0; j<i; j++)
+		curr_p = curr_p -> pointer_to_next;
+	return curr_p -> element;	
 }
 
 #endif

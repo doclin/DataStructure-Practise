@@ -29,8 +29,9 @@ public:
 	virtual bool is_empty() const;
 	virtual bool is_full() const;
 	virtual bool clear();
-	virtual Type& get(int i) const { return list[i]; };                   // Need exceptions
-	virtual Type& operator[](int i) const { return list[i]; };
+	virtual const Type& get(int i) const { return list[i]; };                   // Need exceptions
+	virtual const Type& operator[](int i) const { return list[i]; };
+	virtual Type& operator[](int i);
 };
 
 
@@ -173,6 +174,14 @@ bool SequentialList<Type>::clear()
 {
 	len = 0;                                                             // A fast way
 	return true;
+}
+
+template <typename Type>
+Type& SequentialList<Type>::operator[](int i)                            // Return a modifiable reference
+{
+	if(i<0 or i>=len)
+		;
+	return list[i];
 }
 
 

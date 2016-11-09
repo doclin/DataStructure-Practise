@@ -40,8 +40,9 @@ public:
 	virtual bool is_empty() const;
 	virtual bool is_full() const;
 	virtual bool clear();
-	virtual Type& get(int) const;
-	virtual Type& operator[](int) const;
+	virtual const Type& get(int) const;
+	virtual const Type& operator[](int) const;
+	virtual Type& operator[](int);
 };
 
 
@@ -241,7 +242,7 @@ bool LinkedList<Type>::clear()
 }
 
 template <typename Type>
-Type& LinkedList<Type>::get(int i) const
+const Type& LinkedList<Type>::get(int i) const
 {
 	if(i<0 or i>=len)                                                             // A problem
 		;//return 0;
@@ -252,7 +253,18 @@ Type& LinkedList<Type>::get(int i) const
 }
 
 template <typename Type>
-Type& LinkedList<Type>::operator[](int i) const
+const Type& LinkedList<Type>::operator[](int i) const
+{
+	if(i<0 or i>=len)                                                             // A problem
+		;//return 0;
+	Node<Type>* curr_p = first_p;
+	for(int j=0; j<i; j++)
+		curr_p = curr_p -> pointer_to_next;
+	return curr_p -> element;	
+}
+
+template <typename Type>
+Type& LinkedList<Type>::operator[](int i)
 {
 	if(i<0 or i>=len)                                                             // A problem
 		;//return 0;

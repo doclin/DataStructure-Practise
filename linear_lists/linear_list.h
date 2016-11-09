@@ -16,8 +16,9 @@ public:
 	virtual bool is_empty() const =0;                // Judge whether the list is empty
 	virtual bool is_full() const =0;                 // Judge whether the list is full
 	virtual bool clear() =0;                         // Make the list empty
-	virtual Type& get(int i) const=0;                // Return an element by its index
-	virtual Type& operator[](int i) const=0;         // Return an element
+	virtual const Type& get(int i) const=0;          // Return an element by its index
+	virtual const Type& operator[](int i) const=0;   // Return an element
+	virtual Type& operator[](int i)=0;               // Return a modifiable reference
 };
 
 #endif

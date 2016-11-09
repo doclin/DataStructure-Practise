@@ -14,9 +14,9 @@ void get_result_sequence(SequentialList<int> sequence, int n, Stack< SequentialL
 	}
 	else
 	{
-		for(int i=0; i<sequence.length()-n-1; i++)
+		for(int i=0; i<sequence.length()-n-1; i++)                   // 成对插入直到末尾
 		{
-			if(sequence[i]==0 and sequence[i+n+1]==0)
+			if(sequence[i]==0 and sequence[i+n+1]==0)                // 判断是否可插入
 			{
 				sequence[i] = sequence[i+n+1] = n;
 				/*
@@ -51,7 +51,7 @@ int main()
 	int try2 = 7;
 	int try3 = 9;
 	SequentialList<int> sequence(try2*2);
-	for(int i=0; i<try2*2; i++)
+	for(int i=0; i<try2*2; i++)                            // 初始化序列
 		sequence.append(0);
 	Stack< SequentialList<int> > result;
 	get_result_sequence(sequence, try2, result);

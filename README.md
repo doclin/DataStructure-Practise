@@ -59,3 +59,13 @@
 * Ubuntu14.04 gcc(4.8.4)
 * Ubuntu14.04 clang(3.8)
 * Windows10 Dev-c++(gcc)
+
+TODO:
+expression in stack
+queue implemented by array
+baggage problem in backtracking
+complete tree in array
+threaded binary tree
+tree and forests
+huffman tree
+graph

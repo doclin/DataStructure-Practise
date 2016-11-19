@@ -62,7 +62,6 @@
 
 TODO:
 expression in stack
-queue implemented by array
 baggage problem in backtracking
 complete tree in array
 threaded binary tree

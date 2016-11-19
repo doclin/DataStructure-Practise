@@ -1,11 +1,12 @@
 #include <iostream>
 #include "queue.h"
+#include "array_queue.h"
 
 using namespace std;
 
 int main()
 {
-	Queue<int> queue;
+	ArrayQueue<int> queue;
 	cout << queue.is_empty() << endl;               //1
 	queue.enqueue(1);
 	queue.enqueue(2);

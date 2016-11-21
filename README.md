@@ -60,11 +60,10 @@
 * Ubuntu14.04 clang(3.8)
 * Windows10 Dev-c++(gcc)
 
-TODO:
+TODO:  
 expression in stack  
 baggage problem in backtracking  
-complete tree in array  
-threaded binary tree  
+
 tree and forests  
 huffman tree  
 graph  

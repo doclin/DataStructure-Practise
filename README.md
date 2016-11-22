@@ -18,7 +18,15 @@
         │   ├── binary_tree_iterator.cpp
         │   ├── binary_tree_iterator.h               // 提供四种遍历方法迭代器(4_1)
         │   ├── complete_binary_tree.cpp
-        │   └── complete_binary_tree.h               // (4_3)
+        │   ├── complete_binary_tree.h               // (4_3)
+        │   ├── heap.cpp
+        │   ├── heap.h
+        │   ├── huffman_tree.cpp
+        │   ├── huffman_tree.h
+        │   └── threaded_binary_tree                 // Not finished yet
+        │       ├── tb_tree_iterator.h
+        │       ├── threaded_binary_tree.cpp
+        │       └── threaded_binary_tree.h  
         ├── linear_lists
         │   ├── linear_list.h
         │   ├── linked_list
@@ -48,6 +56,7 @@
         │   ├── second_exercise.txt
         │   └── third_exercise.txt
         ├── queue
+        │   ├── array_queue.h                        // 由循环数组实现的队列
         │   ├── queue.cpp
         │   └── queue.h
         ├── README.md
@@ -63,4 +72,3 @@
 TODO:  
 expression in stack  
 baggage problem in backtracking  
-huffman tree  

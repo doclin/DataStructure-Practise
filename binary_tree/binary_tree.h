@@ -25,11 +25,14 @@ public:
 	BinaryTree(): root(NULL) {}
 	BinaryTree(const Type& x);
 	BinaryTree(const BinaryTree&);
+	//BinaryTree(const BinaryTree&, const BinaryTree&);           // 将已有的两棵树作为左右子树构建二叉树
 	BinaryTree<Type>& operator=(const BinaryTree&);
 	BinTreeNode<Type>* copy(BinTreeNode<Type>* p);
 	void clear(BinTreeNode<Type>* p);
 	void clear();		                                          // 重载提供外部接口，清空树
 	virtual ~BinaryTree();
+	virtual void extend(BinTreeNode<Type>* p);                    // 注意：需为堆内存节点
+	virtual void extend(const BinaryTree<Type>&);
 	virtual bool is_empty() const;
 	virtual int count(BinTreeNode<Type>* p) const;
 	virtual int count() const;                                    // 重载提供外部接口，计算树中元素个数
@@ -106,6 +109,24 @@ template <typename Type>
 BinaryTree<Type>::~BinaryTree()
 {
 	clear(root);
+}
+
+template <typename Type>
+void BinaryTree<Type>::extend(BinTreeNode<Type>* p)
+{
+	BinTreeNode<Type>* origin = root;
+	root = new BinTreeNode<Type>;
+	root -> left_child = origin;
+	root -> right_child = p;
+}
+
+template <typename Type>
+void BinaryTree<Type>::extend(const BinaryTree<Type>& t)
+{
+	BinTreeNode<Type>* origin = root;
+	root = new BinTreeNode<Type>;
+	root -> left_child = origin;
+	root -> right_child = copy(t.root);
 }
 
 template <typename Type>

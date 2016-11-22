@@ -3,7 +3,7 @@
 
 //#include "complete_binary_tree.h"
 
-enum heap_type {minimum, maximum};
+enum heap_type {minimum, maximum};               // Notify heap's type
 
 template <typename Type>
 class Heap
@@ -13,11 +13,11 @@ private:
 	heap_type type;
 	int max_size;
 	int length;
-	void adjust_up(int index);
-	void adjust_down(int index);
+	void adjust_up(int index);                   // Adjust one element's position upward
+	void adjust_down(int index);                 // Adjust one element's position downward
 public:
 	Heap(int max_size_=99);
-	Heap(Type* p, int len);
+	Heap(Type* p, int len);                      // Create a heap from an elements' array
 	//Heap(const CompleteBinTree<Type>& tree);
 	Heap(const Heap& h);
 	Heap<Type>& operator=(const Heap& h);
@@ -26,7 +26,7 @@ public:
 	void make_maximum_tree();
 	bool insert(Type);
 	Type get_top() { return array[0]; }
-	Type pop_top();
+	Type pop_top();                              // Get top element and delete it
 	bool is_empty();
 	bool is_full();
 };
@@ -75,7 +75,7 @@ void Heap<Type>::adjust_down(int index)
 		if(r_child >= length)
 			min = l_child;
 		else
-			min = (array[l_child] < array[r_child]) ? l_child : r_child;
+			min = (array[l_child] < array[r_child]) ? l_child : r_child;  // Find out the smaller child
 		if(array[index] > array[min])
 		{
 			Type tmp;

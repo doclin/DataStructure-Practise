@@ -63,7 +63,4 @@
 TODO:  
 expression in stack  
 baggage problem in backtracking  
-
-tree and forests  
 huffman tree  
-graph  

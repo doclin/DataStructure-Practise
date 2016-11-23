@@ -12,15 +12,15 @@ template <typename Type>
 class HuffmanTree : public BinaryTree<Type>
 {
 private:
-	Type weight;
+	int weight;
 public:
-	HuffmanTree(Type weight_=0, const Type& x=0) : BinaryTree<Type>::BinaryTree(x), weight(weight_) {}
+	HuffmanTree(int weight_=0, const Type& x=0) : BinaryTree<Type>::BinaryTree(x), weight(weight_) {}
 	HuffmanTree(Type* p, int len);
 	HuffmanTree(const HuffmanTree<Type>& t);
 	HuffmanTree<Type>& operator=(const HuffmanTree<Type>& t);
 	virtual ~HuffmanTree() {}
 	virtual void extend(const HuffmanTree<Type>&);
-	operator Type() { return weight; }
+	operator int() { return weight; }
 };
 
 
@@ -30,7 +30,7 @@ HuffmanTree<Type>::HuffmanTree(Type* p, int len)
 	HuffmanTree<Type>* trees = new HuffmanTree<Type>[len];
 	for(int i=0; i<len; i++)
 	{
-		trees[i].weight = p[i];
+		trees[i].weight = p[i].weight;
 		trees[i].root -> element = p[i];
 	}
 	Heap< HuffmanTree<Type> > heap(trees, len);

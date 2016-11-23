@@ -70,5 +70,4 @@
 * Windows10 Dev-c++(gcc)
 
 TODO:  
-expression in stack  
 baggage problem in backtracking  

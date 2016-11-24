@@ -13,10 +13,12 @@ int calculate_postfix_exp(char*);
 int main()
 {
 	char infix[] = "a+b*(c-d)-e/f";
+	//char infix[] = "a-a";
 	char* postfix = get_postfix_exp(infix, sizeof(infix)/sizeof(char));
 	cout << postfix << endl;       //abcd-*+ef/-
+	cout << calculate_postfix_exp(postfix) << endl;
 	delete postfix;
-
+	
 	return 0;
 }
 
@@ -96,4 +98,44 @@ char* get_postfix_exp(char* infix_exp, int len)
 	}
 
 	return postfix_exp;
+}
+
+//非常鸡肋的计算函数，直接将非运算符的char作为操作数，容易溢出, just for fun
+int calculate_postfix_exp(char* postfix_exp)
+{
+	Stack<char> stack;
+	int index = 0;
+	while(postfix_exp[index] != '\0')
+	{
+		char ch = postfix_exp[index];
+		if(ch == '+' or ch == '-' or ch == '*' or ch == '/')
+		{
+			char operator2 = stack.pop();
+			char operator1 = stack.pop();
+			char result;
+			switch(ch)
+			{
+				case '+':
+				result = operator1 + operator2;
+				stack.push(result);
+				break;
+				case '-':
+				result = operator1 - operator2;
+				stack.push(result);
+				break;
+				case '*':
+				result = operator1 * operator2;
+				stack.push(result);
+				break;
+				case '/':
+				result = operator1 / operator2;
+				stack.push(result);
+				break;
+			}
+		}
+		else		
+			stack.push(ch);		
+		index++;
+	}
+	return (int)stack.pop();
 }

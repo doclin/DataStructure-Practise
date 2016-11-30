@@ -17,7 +17,7 @@ int main()
 	char* postfix = get_postfix_exp(infix, sizeof(infix)/sizeof(char));
 	cout << postfix << endl;       //abcd-*+ef/-
 	cout << calculate_postfix_exp(postfix) << endl;
-	delete postfix;
+	delete [] postfix;
 	
 	return 0;
 }

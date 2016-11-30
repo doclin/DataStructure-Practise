@@ -18,8 +18,9 @@ int main()
 	//int a[5] = {1, 3, 6, 2, 4};
 	HuffmanTree<character> htree(c, 5);
 	cout << htree << endl;
-	htree.pre_order();             //  c e b ad
-	htree.in_order();              // c e b a d
+	htree.show_code();
+	//htree.pre_order();             //  c e b ad
+	//htree.in_order();              // c e b a d
 
 }
 

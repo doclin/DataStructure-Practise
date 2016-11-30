@@ -1,0 +1,11 @@
+Write a function to produce huffman codes for a set of weights.
+
+The following demands must be satisfied:
+
+(1) The function prototype should be like this:   void HuffmanCode(double weights[], int size);
+
+(2) Inside the function, a variable like char **hcodes should be declared, and the space for huffman codes must be allocated dynamically using new[] operation;
+
+(3)When building huffman tree, a minimum heap must be created by repeating the adjustDown() operation;
+
+(4) After outputting all the huffman codes, the dynamically allocated space must be released;

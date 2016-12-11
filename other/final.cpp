@@ -63,7 +63,7 @@ void HuffmanCode(double weights[], int size)
 		node = new HNode(heap.pop_top());
 	}
 	/* output the huffmantree */
-	int code_max_len = (size+1)/2 + 1;                     // Huffman code's max length
+	int code_max_len = size;                     // Huffman code's max length
 	int code_current_len = 0;
 	char** hcodes = new char*[size];                       // Result set
 	for(int i=0; i<size; i++)

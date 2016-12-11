@@ -81,7 +81,7 @@ void HuffmanTree<Type>::show_code()
 	BinTreeNode<Type>* current_p = BinaryTree<Type>::root;
 	if(current_p == NULL)
 		return;	
-	int code_len = (num+1)/2 + 1;
+	int code_len = num;
 	int current_len = 0;
 	char* current_code = new char[code_len];
 	show_code(current_p, current_code, current_len);

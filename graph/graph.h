@@ -2,6 +2,12 @@
 #define _GRAPH_H_INCLUDED_
 #include "../linear_lists/sequential_list/sequential_list.h"
 
+template <typename Type> class Graph;
+
+template <typename Type> void dfs(const Graph<Type>&);
+template <typename Type> void bfs(const Graph<Type>&);
+
+
 template <typename Type>
 class Graph
 {
@@ -25,6 +31,8 @@ public:
 	int num_of_edges() const;
 	Type get_vertice(int i) const;
 	double get_weight(int u, int v) const;
+	friend void dfs<Type>(const Graph<Type>&);
+	friend void bfs<Type>(const Graph<Type>&);
 };
 
 
@@ -100,24 +108,27 @@ bool Graph<Type>::insert_edge(int u, int v, double weight)
 {
 	if(exist(u, v) or is_full())
 		return false;
+	if(u >= ver_list.length() or v >= ver_list.length())
+		return false;
 	edge_matrix[u][v] = weight;
 	return true;
 }
 
 template <typename Type>
-bool Graph<Type>::remove_vertice(int i) //
+bool Graph<Type>::remove_vertice(int i)
 {
-	int len = ver_list.length()
+	int len = ver_list.length();
 	if(i >= len)
 		return false;
-	delete [] edge_matrix[i]
+	delete [] edge_matrix[i];
 	for(int j=i; j<len-1; j++)
 	{
 		edge_matrix[j] = edge_matrix[j+1];
 	}
+	edge_matrix[len-1] = new double[max_size];
 	for(int k=0; k<len; k++)
 		edge_matrix[len-1][k] = 0;
-	for(int m=0; m<len; m++)
+	for(int m=0; m<len-1; m++)
 	{
 		edge_matrix[m][i] = 0;
 		for(int n=i+1; n<len; n++)
@@ -144,7 +155,7 @@ template <typename Type>
 bool Graph<Type>::exist(int u, int v) const
 {
 	if(edge_matrix[u][v] == 0)
-		return false
+		return false;
 	return true;
 }
 
@@ -189,7 +200,7 @@ Type Graph<Type>::get_vertice(int i) const
 }
 
 template <typename Type>
-double get_weight(int u, int v) const
+double Graph<Type>::get_weight(int u, int v) const
 {
 	return edge_matrix[u][v];
 }

@@ -220,6 +220,8 @@ bool DBCLinkedList<Type>::clear()
 		curr_p = curr_p -> pointer_to_next;
 		delete curr_p -> pointer_to_prior;
 	}
+	first_p -> pointer_to_next = last_p;
+	last_p -> pointer_to_prior = first_p;	
 	len = 0;
 	return true;
 }

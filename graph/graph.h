@@ -1,6 +1,7 @@
 #ifndef _GRAPH_H_INCLUDED_
 #define _GRAPH_H_INCLUDED_
 #include "../linear_lists/sequential_list/sequential_list.h"
+#include <iostream>
 
 template <typename Type> class Graph;
 
@@ -16,7 +17,7 @@ private:
 	double** edge_matrix;
 	int max_size;
 public:
-	Graph(int max_size_=99);
+	Graph(int max_size_=19);
 	Graph(const Graph& g);
 	Graph& operator=(const Graph& g);
 	~Graph();
@@ -31,6 +32,9 @@ public:
 	int num_of_edges() const;
 	Type get_vertice(int i) const;
 	double get_weight(int u, int v) const;
+	void print_matrix() const;
+	void clear();
+	void clear_edges();
 	friend void dfs<Type>(const Graph<Type>&);
 	friend void bfs<Type>(const Graph<Type>&);
 };
@@ -205,5 +209,36 @@ double Graph<Type>::get_weight(int u, int v) const
 	return edge_matrix[u][v];
 }
 
+template <typename Type>
+void Graph<Type>::print_matrix() const
+{
+	for(int i=0; i<max_size; i++)
+	{
+		for(int j=0; j<max_size; j++)
+		{
+			cout << edge_matrix[i][j] <<" ";
+		}
+		cout << endl;
+	}
+}
+
+template <typename Type>
+void Graph<Type>::clear()
+{
+	clear_edges();
+	ver_list.clear();
+}
+
+template <typename Type>
+void Graph<Type>::clear_edges()
+{
+	for(int i=0; i<max_size; i++)
+	{
+		for(int j=0; j<max_size; j++)
+		{
+			edge_matrix[i][j] = 0;
+		}
+	}
+}
 
 #endif

@@ -1,6 +1,6 @@
 # DataStructure-Practise
 数据结构练习记录 by Doclinzh(www.doclinzh.com)  
-这是在武汉大学大二期间, 学习陈刚老师数据结构时积累的一些相关的C++代码。主要包括：
+这是在武汉大学大二期间, 学习数据结构时积累的一些相关的C++代码。主要包括：
 * 几种基本数据结构及相关算法的实现
 * 相应的课后习题及部分应用探索  
 
@@ -23,7 +23,7 @@
         │   ├── heap.h
         │   ├── huffman_tree.cpp
         │   ├── huffman_tree.h
-        │   └── threaded_binary_tree                 // Not finished yet
+        │   └── threaded_binary_tree
         │       ├── tb_tree_iterator.h
         │       ├── threaded_binary_tree.cpp
         │       └── threaded_binary_tree.h  

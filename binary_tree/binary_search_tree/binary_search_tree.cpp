@@ -2,6 +2,8 @@
 #include "binary_search_tree.h"
 #include "../binary_tree.h"
 
+using namespace std;
+
 BinaryTree<char> get_char_tree()
 {
 	BinaryTree<char> tree = BinaryTree<char>('A');
@@ -22,6 +24,30 @@ BinaryTree<char> get_char_tree()
 
 int main()
 {
-
+	BSTree<char> tree1;
+	tree1.insert('D');
+	tree1.insert('E');
+	tree1.insert('F');
+	tree1.insert('A');
+	tree1.insert('B');
+	tree1.insert('C');	
+	//tree1.in_order();
+	
+	BSTree<char> tree2(get_char_tree());
+	cout << tree1.search('C') << endl;    // 1
+	tree1.remove('A');
+	cout << tree1.search('F') << endl;    // 1
+	cout << tree1.search('z') << endl;    // 0
+	tree1.in_order();
+	cout << "---------" << endl;	
+	tree2.insert('Z');
+	cout << tree2.search('Z') << endl;    // 1
+	tree1.clear();
+	tree1 = tree2;
+	tree2.in_order();
+	cout << "---------" << endl;
+	tree1.in_order();
+	/*
+	*/
 
 }

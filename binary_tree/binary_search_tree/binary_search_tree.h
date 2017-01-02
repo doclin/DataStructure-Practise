@@ -36,7 +36,7 @@ void BSTree<Type>::build(BinTreeNode<Type>* p)
 template <typename Type>
 BSTree<Type>::BSTree(const BinaryTree<Type>& t)
 {
-	build(t.root);
+	build(t.get_root());
 }
 
 template <typename Type>
@@ -73,8 +73,10 @@ template <typename Type>
 bool BSTree<Type>::insert(const Type& t)
 {
 	if(BinaryTree<Type>::root == NULL)
-		BinaryTree<Type>::root = new BinTreeNode(t);
-	return true;	
+	{
+		BinaryTree<Type>::root = new BinTreeNode<Type>(t);
+		return true;
+	}
 	BinTreeNode<Type>* current = BinaryTree<Type>::root;
 	while(current != NULL)
 	{
@@ -86,7 +88,7 @@ bool BSTree<Type>::insert(const Type& t)
 				current = current -> right_child;
 			else
 			{
-				current -> right_child = new BinTreeNode(t);
+				current -> right_child = new BinTreeNode<Type>(t);
 				return true;
 			}
 		}
@@ -96,7 +98,7 @@ bool BSTree<Type>::insert(const Type& t)
 				current = current -> left_child;
 			else
 			{
-				current -> left_child = new BinTreeNode(t);
+				current -> left_child = new BinTreeNode<Type>(t);
 				return true;
 			}
 		}
@@ -107,27 +109,27 @@ template <typename Type>
 bool BSTree<Type>::remove(const Type& t)
 {
 	BinTreeNode<Type>* current = BinaryTree<Type>::root;
-	BinTreeNode<Type>*& parent_pointer = BinaryTree<Type>::root;
+	BinTreeNode<Type>** parent_pointer = &(BinaryTree<Type>::root);
 	while(current != NULL)
 	{
 		if(t == current->element)
 		{
 			if(current->right_child == NULL and current->left_child == NULL)
 			{
-				parent_pointer = NULL;
+				*parent_pointer = NULL;
 				delete current;				
 			}
-			if(current->right_child != NULL and current->left_child == NULL)
+			else if(current->right_child != NULL and current->left_child == NULL)
 			{
-				parent_pointer = current -> right_child;
+				*parent_pointer = current -> right_child;
 				delete current;
 			}
-			if(current->right_child == NULL and current->left_child != NULL)
+			else if(current->right_child == NULL and current->left_child != NULL)
 			{
-				parent_pointer = current -> left_child;
+				*parent_pointer = current -> left_child;
 				delete current;
 			}
-			if(current->right_child != NULL and current->left_child != NULL)
+			else if(current->right_child != NULL and current->left_child != NULL)
 			{
 				BinTreeNode<Type>* p = current -> right_child;
 				BinTreeNode<Type>* parent = current;
@@ -147,12 +149,12 @@ bool BSTree<Type>::remove(const Type& t)
 		}
 		else if(t > current->element)
 		{
-			parent_pointer = current -> right_child;
+			parent_pointer = &(current -> right_child);
 			current = current -> right_child;
 		}
 		else if(t < current->element)
 		{
-			parent_pointer = current -> left_child;
+			parent_pointer = &(current -> left_child);
 			current = current -> left_child;
 		}
 	}

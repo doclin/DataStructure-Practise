@@ -103,6 +103,7 @@ bool BSTree<Type>::insert(const Type& t)
 			}
 		}
 	}
+	return false;
 }
 
 template <typename Type>

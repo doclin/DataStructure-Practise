@@ -1,5 +1,5 @@
 #include <iostream>
-#include "binary_search_tree.h"
+#include "AVLTree.h"
 #include "../binary_tree.h"
 
 using namespace std;
@@ -24,15 +24,19 @@ BinaryTree<char> get_char_tree()
 
 int main()
 {
-	BSTree<char> tree1;
+	AVLTree<char> tree1;
 	tree1.insert('D');
 	tree1.insert('E');
 	tree1.insert('F');
 	tree1.insert('A');
 	tree1.insert('B');
 	tree1.insert('C');	
-	//tree1.in_order();
+	tree1.insert('X');	
+	tree1.insert('I');	
+	tree1.insert('Z');	
+	tree1.in_order();
 	
+	/*
 	BSTree<char> tree2(get_char_tree());
 	cout << tree1.search('C') << endl;    // 1
 	tree1.remove('A');
@@ -47,6 +51,7 @@ int main()
 	tree2.in_order();
 	cout << "---------" << endl;
 	tree1.in_order();
+	*/
 
 	return 0;
 }

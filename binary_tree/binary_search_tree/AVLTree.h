@@ -8,13 +8,13 @@ class AVLTree : public BSTree<Type>
 {
 private:
 	//void build(BinTreeNode<Type>*);
-	//void balance();
+	//void balance(BinTreeNode<Type>*& p);
 	void l_rotation(BinTreeNode<Type>*& p);
 	void r_rotation(BinTreeNode<Type>*& p);
 	int height(BinTreeNode<Type>*);
 	int judge(BinTreeNode<Type>*);
 	bool insert(BinTreeNode<Type>*& p, const Type& t, bool& flag);
-	//bool remove(BinTreeNode<Type>* p, const Type& t);
+	bool remove(BinTreeNode<Type>* p, const Type& t);
 public:
 	AVLTree() : BSTree<Type>::BSTree() {}
 	AVLTree(const Type& x) : BSTree<Type>::BSTree(x) {}
@@ -26,8 +26,9 @@ public:
 	AVLTree<Type>& operator=(const AVLTree<Type>& t);
 	virtual ~AVLTree() {}
 	virtual bool insert(const Type&);
-	//virtual bool remove(const Type&);
+	virtual bool remove(const Type&);
 };
+
 
 template <typename Type>
 void AVLTree<Type>::l_rotation(BinTreeNode<Type>*& p)
@@ -128,6 +129,109 @@ bool AVLTree<Type>::insert(BinTreeNode<Type>*& p, const Type& t, bool& flag)
 }
 
 template <typename Type>
+bool AVLTree<Type>::remove(BinTreeNode<Type>*& p, const Type& t, )
+{
+	if(p == NULL)
+		return false;
+	else if(t > p->element)
+	{
+		remove(p -> right_child);
+	}
+	else if(t < p->element)
+	{
+		remove(p -> left_child);
+	}
+	else if(t == p->element)
+	{
+		if(p->right_child == NULL and p->left_child == NULL)
+		{
+			*parent_pointer = NULL;
+			delete p;				
+		}
+		else if(p->right_child != NULL and p->left_child == NULL)
+		{
+			*parent_pointer = p -> right_child;
+			delete p;
+		}
+		else if(p->right_child == NULL and p->left_child != NULL)
+		{
+			*parent_pointer = p -> left_child;
+			delete p;
+		}
+		else if(p->right_child != NULL and p->left_child != NULL)
+		{
+			BinTreeNode<Type>* p = p -> right_child;
+			BinTreeNode<Type>* parent = p;
+			while(p->left_child != NULL)
+			{
+				parent = p;
+				p = p -> left_child;
+			}
+			Type tmp = p -> element;
+			p -> element = p -> element;
+			p -> element = tmp;
+			parent -> left_child = p -> right_child;
+			delete p;
+		}
+	}
+
+
+
+
+
+
+
+	
+
+
+	if(p == NULL)
+	{
+		p = new BinTreeNode<Type>(t);
+		flag = false;
+		return true;
+	}
+	else if(t == p->element)
+		return false;
+
+	else if(t > p->element)
+	{
+		if(!insert(p->right_child, t, flag))
+			return false;
+		if(!flag)
+		{
+			if(judge(p) == 2)
+			{
+				l_rotation(p);
+				flag = true;
+			}
+		}
+		return true;
+	}
+	else if(t < p->element)
+	{
+		if(!insert(p->left_child, t, flag))
+			return false;
+		if(!flag)
+		{
+			if(judge(p) == -2)
+			{
+				r_rotation(p);
+				flag = true;
+			}
+		}
+		return true;		
+	}
+
+
+
+
+}
+
+
+
+
+
+template <typename Type>
 AVLTree<Type>& AVLTree<Type>::operator=(const AVLTree<Type>& t)
 {
 	BSTree<Type>::operator=(t);
@@ -141,6 +245,11 @@ bool AVLTree<Type>::insert(const Type& t)
 	return insert(this -> root, t, flag);
 }
 
+template <typename Type>
+bool AVLTree<Type>::remove(const Type& t)
+{
+	return remove(this -> root, t,);
+}
 
 
 
